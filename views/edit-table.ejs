@@ -1,0 +1,52 @@
+<%- include('partials/header.ejs') %>
+<section class="text-center">
+    <h4><strong>Create</strong></h4>
+    </section>
+  
+<div class="row">
+    <div class="col-md-12">
+       
+      <form class="form-horizontal" action="/update-table" method="POST">
+       
+        <input type="hidden" name="id" value="<%=modelData.id %>"/>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Table Name</label>  
+          <div class="col-md-4">
+          <input id="name" name="name" type="text" placeholder="placeholder" value="<%=modelData.name %>" class="form-control input-md">
+           
+          </div>
+        </div>
+         <!-- Text input-->
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Description</label>  
+          <div class="col-md-4">
+          <input id="description" name="description" type="text" value="<%=modelData.description %>" placeholder="placeholder" class="form-control input-md">
+           
+          </div>
+        </div>
+         <!-- Text input-->
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Person</label>  
+          <div class="col-md-4">
+          <input id="person" name="person" type="number" min="1" value="<%=modelData.person %>" placeholder="placeholder" class="form-control input-md">
+           
+          </div>
+        </div>
+        
+        <!-- Button (Double) -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="button1id"></label>
+          <div class="col-md-8">
+            <button class="btn btn-success">Save</button>
+            <a href="/tables"  class="btn btn-danger">Back</a>
+          </div>
+        </div>
+        
+    
+        </form>
+        
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

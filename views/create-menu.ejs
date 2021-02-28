@@ -1,0 +1,52 @@
+<%- include('partials/header.ejs') %>
+<section class="text-center">
+    <h4><strong>Create</strong></h4>
+    </section>
+  
+<div class="row">
+    <div class="col-md-12">
+       
+      <form class="form-horizontal" action="/save-menu" method="POST" enctype="multipart/form-data">
+       
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Title</label>  
+          <div class="col-md-4">
+          <input id="name" name="title" type="text" placeholder="placeholder" class="form-control input-md">
+           
+          </div>
+        </div>
+         <!-- Text input-->
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Description</label>  
+          <div class="col-md-4">
+          <input id="description" name="description" type="text" placeholder="placeholder" class="form-control input-md">
+           
+          </div>
+        </div>
+           <!-- Text input-->
+           <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Image</label>  
+            <div class="col-md-4">
+            <input id="photo" name="photo" type="file" placeholder="placeholder" class="form-control input-md">
+             
+            </div>
+          </div>
+        
+        <!-- Button (Double) -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="button1id"></label>
+          <div class="col-md-8">
+            <button class="btn btn-success">Save</button>
+            <a href="/menu"  class="btn btn-danger">Back</a>
+          </div>
+        </div>
+        
+    
+        </form>
+        
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

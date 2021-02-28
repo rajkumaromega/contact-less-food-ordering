@@ -1,0 +1,49 @@
+<%- include('partials/header.ejs') %>
+<section class="text-center">
+    <h4 ><strong>Menu Items</strong></h4>
+    </section>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/create-menuitems?id=<%=menuid %>" class="btn btn-primary  pull-right" style="margin-bottom: 5px;">Add New</a>
+            </div>
+            </div>
+<div class="row">
+    <div class="col-md-12">
+       
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                
+                <th scope="col" style="width:20%"></th>
+              </tr>
+            </thead>
+            <tbody>
+            
+              <%
+              if(modelData !=null){
+              var i=1;
+              modelData.forEach(function(data){
+              %>
+              <tr>
+                <td scope="row"><img style="width:100px;height:100px" src="/uploads/images/<%=data.image %>"/></td>
+                <td><%=data.title %></td>
+                <td><%=data.description %></td>
+                
+                <td><a href="/delete-menuitems?id=<%=data.id %>&menuid=<%=menuid %>" onclick="return ondelete()" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-times"></i></a> 
+                  <a href="/edit-menuitems?id=<%=data.id %>" class="btn btn-sm btn-info btn-circle"><i class="fa fa-edit"></i></a> 
+                </td>
+              </tr>
+              <%  i++; }) %>
+            <% } else{ %>
+                <tr>
+                    <td colspan="5">No Data Found</td>
+                </tr>
+            <% } %>
+            </tbody>
+          </table>
+    </div>
+</div>
+<%- include('partials/footer.ejs') %>

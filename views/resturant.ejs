@@ -1,0 +1,54 @@
+<%- include('partials/header.ejs') %>
+
+<section class="text-center">
+    <h4><strong>Business Name</strong></h4>
+    </section>
+  
+<div class="row">
+    <div class="col-md-12">
+       
+      <form class="form-horizontal" action="/save-resturant" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<%=modelData.id %>"/>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Name</label>  
+          <div class="col-md-4">
+          <input id="title" name="title" type="test" value="<%=modelData.title %>" placeholder="placeholder" class="form-control input-md">
+           
+          </div>
+        </div>
+         <!-- Text input-->
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Description</label>  
+          <div class="col-md-4">
+          <input id="description" name="description" type="text" value="<%=modelData.description %>" placeholder="placeholder" class="form-control input-md">
+           
+          </div>
+        </div>
+         <!-- Text input-->
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Image</label>  
+          <div class="col-md-4">
+            <img style="width:100px;height:100px" src="/uploads/images/<%=modelData.image %>"/>
+          <input id="photo" name="photo" type="file" placeholder="placeholder" class="form-control input-md">
+           
+          </div>
+        </div>
+        
+        <!-- Button (Double) -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="button1id"></label>
+          <div class="col-md-8">
+            <button class="btn btn-success">Save</button>
+            
+          </div>
+        </div>
+        
+    
+        </form>
+        
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>
