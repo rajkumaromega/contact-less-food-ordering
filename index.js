@@ -7,7 +7,7 @@ npm install --save multer
 
 
 */
-
+var websiteurl="http://192.168.43.22:3000/";
 var mysql = require('mysql');
 var express = require('express');
 var session = require('express-session');
@@ -295,6 +295,8 @@ app.get('/delete-table', function(request, response, next) {
 		response.send('Please login to view this page!');
 	}
 });
+
+
 app.get('/edit-table', function(request, response, next) { 
 	let id = request.query.id;
 	if (request.session.loggedin) {
@@ -328,7 +330,27 @@ app.post('/save-table', function(request, response, next) {
 	response.redirect('/tables');  
   }); 
 
-app.get('/qrcode', function(request, response) {
+  app.get('/viewmenu', function(request, response) {
+
+	let id = request.query.tid;
+	let bid=request.query.bid;
+		var sql='SELECT * FROM menus where businessid='+bid;
+		connection.query(sql, function (err, data, fields) {
+		if (err) throw err;
+		response.render('viewmenu', { title: 'Menu List', modelData: data});
+		});
+
+});
+app.get('/viewmenuitems', function(request, response) {
+		let id = request.query.id;
+		var sql='SELECT * FROM menuitems where menuid=?';
+		connection.query(sql,id, function (err, data, fields) {
+		if (err) throw err;
+		response.render('viewmenuitems', { menuid: id, modelData: data});
+		});
+
+});
+
 	
 	
 app.get('/user-list', function(req, res, next) {
@@ -339,7 +361,7 @@ app.get('/user-list', function(req, res, next) {
 	});
 });
 
- 
+app.get('/qrcode', function(request, response) {
 // Print the QR code to terminal
 //QRCode.toString(stringdata,{type:'terminal'},
   //                  function (err, QRcode) {
@@ -350,11 +372,18 @@ app.get('/user-list', function(req, res, next) {
   //  console.log(QRcode)
 //})
 	
-	
-QRCode.toDataURL("stringdata", function (err, code) {
+let id = request.query.id;
+let bid=request.session.businessid;
+console.log(request.baseUrl);
+	if (request.session.loggedin) {	
+		var dataurl = websiteurl + "viewmenu?bid="+bid+"&tid="+id;
+QRCode.toDataURL(dataurl, function (err, code) {
     if(err) return console.log("error occurred")
-	response.render("qrcode", {imgdata:code}); 
+	response.render("qrcode", {imgdata:code,business:bid,table:id}); 
 });
+} else {
+	response.send('Please login to view this page!');
+}
 	//response.end();
 });
 

@@ -1,39 +1,37 @@
-<%- include('partials/header.ejs') %>
+<%- include('partials/userheader.ejs') %>
 <section class="text-center">
-    <h4><strong>Tables</strong></h4>
+    <h4 ><strong>Menu</strong></h4>
     </section>
     <div class="row">
-        <div class="col-md-12">
-            <a href="/create-tables" class="btn btn-primary  pull-right" style="margin-bottom: 5px;">Add New</a>
-            </div>
+       
             </div>
 <div class="row">
     <div class="col-md-12">
-       
+       <div class="table-responsive">
         <table class="table table-dark">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Table Name</th>
+                <th scope="col">Name</th>
                 <th scope="col">Description</th>
-                <th scope="col">Person</th>
+                
                 <th scope="col" style="width:20%"></th>
               </tr>
             </thead>
             <tbody>
+            
               <%
               if(modelData !=null){
               var i=1;
               modelData.forEach(function(data){
               %>
               <tr>
-                <th scope="row"><%=i; %></th>
-                <td><%=data.name %></td>
+                <td scope="row"><img style="width:100px;height:100px" src="/uploads/images/<%=data.image %>"/></td>
+                <td><%=data.title %></td>
                 <td><%=data.description %></td>
-                <td><%=data.person %></td>
-                <td><a href="/delete-table?id=<%=data.id %>" onclick="return ondelete()" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-times"></i></a> 
-                  <a href="/edit-table?id=<%=data.id %>" class="btn btn-info btn-sm btn-circle"><i class="fa fa-edit"></i></a> 
-                  <a href="/qrcode?id=<%=data.id %>" target="_blank" class="btn btn-success btn-sm btn-circle"><i class="fa fa-qrcode"></i></a> 
+                
+                <td>
+                  <a href="/viewmenuitems?id=<%=data.id %>" class="btn btn-primary btn-sm btn-circle" title="Add Items"><i class="fa fa-eye"></i></a>
                 </td>
               </tr>
               <%  i++; }) %>
@@ -42,10 +40,9 @@
                     <td colspan="5">No Data Found</td>
                 </tr>
             <% } %>
-              
             </tbody>
           </table>
+        </div>
     </div>
 </div>
-
 <%- include('partials/footer.ejs') %>
