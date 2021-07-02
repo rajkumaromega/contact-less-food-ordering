@@ -1,0 +1,58 @@
+<%- include('partials/header.ejs') %>
+<section class="text-center">
+    <h4 ><strong>Orders Items</strong></h4>
+    </section>
+
+<div class="row">
+    <div class="col-md-12">
+      
+       <div class="table-responsive">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th>Food Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Quantiry</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+               
+                
+                <th scope="col" style="width:20%"></th>
+              </tr>
+            </thead>
+            <tbody>
+            
+              <%
+              if(modelData !=null){
+              var i=1;
+              var checkoutprice = 0;
+              modelData.forEach(function(data){
+               
+              %>
+              <tr>
+                <td scope="row"><img style="width:100px;height:100px" src="/uploads/images/<%=data.image %>"/></td>
+                <td><%=data.title %></td>
+                <td><%=data.description %></td>
+                <td><%=data.qty %></td>
+                <td><%=data.unitprice %></td>
+                <td><%=data.totalprice %></td>
+              
+                <td>
+                
+                </td>
+              </tr>
+              <%  i++; }) %>
+
+            <% } else{ %>
+                <tr>
+                    <td colspan="5">No Data Found</td>
+                </tr>
+            <% } %>
+            </tbody>
+         
+          </table>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer.ejs') %>

@@ -1,0 +1,3 @@
+alter table accounts add column usertype varchar(100);
+alter table business add column status int default 0;
+INSERT INTO accounts(username, password, email, usertype) VALUES ('admin','admin','admin','admin')

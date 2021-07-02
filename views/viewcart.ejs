@@ -1,0 +1,73 @@
+<%- include('partials/userheader.ejs') %>
+<section class="text-center">
+    <h4 ><strong>Cart Items</strong></h4>
+    </section>
+
+<div class="row">
+    <div class="col-md-12">
+      <a href="/back-viewmenu" class="btn btn-sm btn-info btn-circle m-b-10" style="margin-bottom: 10px;"><i class="fa fa-home"></i>Back To Main Menu</a> 
+       <div class="table-responsive">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Quantiry</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+                <th scope="col" style="width:20%"></th>
+              </tr>
+            </thead>
+            <tbody>
+            
+              <%
+              if(modelData !=null){
+              var i=1;
+              var checkoutprice = 0;
+              modelData.forEach(function(data){
+                checkoutprice = checkoutprice + data.totalprice;
+              %>
+              <tr>
+                <td scope="row"><img style="width:100px;height:100px" src="/uploads/images/<%=data.image %>"/></td>
+                <td><%=data.title %></td>
+                <td><%=data.description %></td>
+                <td><%=data.qty %></td>
+                <td><%=data.unitprice %></td>
+                <td><%=data.totalprice %></td>
+                <td>
+                  <a href="/update-cart-min?id=<%=data.id %>&price=<%=data.unitprice %>&qty=<%=data.qty %>&cartid=<%=data.cartid %>" class="btn btn-sm btn-info btn-circle"><i class="fa fa-minus"></i></a> 
+                  <a href="/update-cart-plus?id=<%=data.id %>&price=<%=data.unitprice %>&qty=<%=data.qty %>&cartid=<%=data.cartid %>" class="btn btn-sm btn-info btn-circle"><i class="fa fa-plus"></i></a> 
+                  <a href="/update-cart-delete?id=<%=data.id %>" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-times"></i></a> 
+                </td>
+              </tr>
+              <%  i++; }) %>
+
+            <% } else{ %>
+                <tr>
+                    <td colspan="5">No Data Found</td>
+                </tr>
+            <% } %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Checkout Price</td>
+                <td><%=checkoutprice%></td>
+                <td>
+                  <%
+                  if(checkoutprice !=0){
+                    %>
+                    <a href="/place-order" class="btn btn-sm btn-success btn-circle"><i class="fa fa-money"></i>Place Order</a> 
+                    <% }%>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer.ejs') %>
